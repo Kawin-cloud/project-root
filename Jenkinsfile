@@ -8,7 +8,9 @@ pipeline {
                               }
 	stage('Build and Run Docker Compose'){
 	    steps {
+		script{
                       sh 'docker-compose up -d --build'
+                      }
                   }
 		                             }        
           }
