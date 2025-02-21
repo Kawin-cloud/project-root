@@ -9,7 +9,11 @@ pipeline {
 	stage('Build and Run Docker Compose'){
 	    steps {
 		script{
-                      sh 'docker-compose up -d --build'
+			sh 'docker-compose down || true'
+			sh 'docker container prune -f'
+			sh 'docker volume prune -f' 
+
+                        sh 'docker-compose up -d --build'
                       }
                   }
 	                                    }        
