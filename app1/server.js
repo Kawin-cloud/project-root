@@ -1,13 +1,18 @@
-const express = require('express'); // This should be declared only once
+const express = require('express');
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 4000; // Change to 4001 for app2
+const PORT = 4000;
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to serve the HTML file
 app.get('/app1', (req, res) => {
-  res.send('App1 is running');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`App1 running on port ${PORT}`);
 });
 
